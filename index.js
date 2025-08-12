@@ -10,7 +10,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ===== MIDDLEWARE =====
-app.use(cors());
+app.use(cors({
+  origin: "https://shortpath.netlify.app", // sirf tumhara frontend
+  methods: ["GET", "POST"] // allowed HTTP methods
+}));
 app.use(express.json());
 
 // ===== MONGO CONNECTION =====
@@ -78,3 +81,4 @@ app.get("/:shortId", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
